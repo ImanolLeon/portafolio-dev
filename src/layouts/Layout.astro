@@ -1,0 +1,75 @@
+---
+import '../styles/global.css';
+
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = 'Portfolio de desarrollador - Systems Engineer Full Stack' } = Astro.props;
+---
+
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/png" href="/images/favicon.png" sizes="64x64" />
+    <link rel="apple-touch-icon" href="/images/favicon.png" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#0E1314" media="(prefers-color-scheme: dark)" />
+    <meta name="theme-color" content="#EDEEEC" media="(prefers-color-scheme: light)" />
+
+    <!-- Fuentes: Archivo (display + cuerpo) y JetBrains Mono (etiquetas técnicas). -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Aplica el tema guardado ANTES del primer paint: evita el destello oscuro (FOUC). -->
+    <script is:inline>
+      (function () {
+        try {
+          var theme = localStorage.getItem('theme');
+          var dark = theme ? theme === 'dark' : true;
+          document.documentElement.classList.toggle('light', !dark);
+        } catch (e) {
+          /* localStorage no disponible: se queda en el tema oscuro por defecto. */
+        }
+      })();
+    </script>
+
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+
+    <!-- URLs limpias (/about, /projects...): si se abre o recarga una de esas
+         rutas, salta a su sección antes del primer paint, sin animación. -->
+    <script is:inline>
+      (function () {
+        var id = window.location.pathname.replace(/^\/+|\/+$/g, '');
+        if (!id || ['home', 'about', 'projects', 'contact'].indexOf(id) === -1) return;
+
+        var jump = function () {
+          var target = document.getElementById(id);
+          if (!target) return;
+          var html = document.documentElement;
+          var previous = html.style.scrollBehavior;
+          html.style.scrollBehavior = 'auto';
+          target.scrollIntoView();
+          html.style.scrollBehavior = previous;
+        };
+
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', jump);
+        } else {
+          jump();
+        }
+      })();
+    </script>
+  </body>
+</html>

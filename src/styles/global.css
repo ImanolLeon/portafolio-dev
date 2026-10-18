@@ -1,0 +1,99 @@
+@import "tailwindcss";
+
+/*
+  Mundo: "Ink & Brass"
+  --------------------
+  Sustituye el par navy + naranja neón (un tell típico de UI generada:
+  "near-black con un único acento vermellón") por una tierra de tinta con
+  tinte frío-verdoso, papel cálido para el texto y UN acento latón sobrio.
+  Los nombres de token (navy/orange/slate/white) se conservan para no romper
+  los componentes; cambian sus VALORES. El tema claro los remapea abajo.
+*/
+@theme {
+  /* Tierra / superficies */
+  --color-navy-900: #0E1314; /* fondo base */
+  --color-navy-800: #151C1D; /* panel */
+  --color-navy-700: #1C2524; /* elevado */
+
+  /* Escala de apagado + bordes */
+  --color-slate-700: #2A3433; /* borde suave */
+  --color-slate-600: #3A4543; /* borde fuerte */
+  --color-slate-500: #6E7874; /* tenue / placeholders */
+  --color-slate-400: #98A29D; /* texto secundario */
+  --color-slate-300: #CDD3CF; /* texto cuerpo */
+
+  /* Texto principal: papel cálido (no blanco puro) */
+  --color-white: #EBE7DE;
+
+  /* Acento: latón. Uno solo, para marcas e interacción. */
+  --color-orange-500: #D9A441;
+  --color-orange-600: #B8862B;
+  --color-gold-ink: #D9A441; /* texto de acento: en oscuro, el mismo latón */
+  --color-ink-900: #0E1314; /* tinta oscura: texto SOBRE rellenos de latón */
+
+  /* Señales */
+  --color-red-400: #E4705B;
+  --color-red-500: #D96A55;
+
+  /* Soporte frío (degradados residuales sobre imágenes) */
+  --color-purple-500: #3E5250;
+
+  --font-sans: 'Archivo', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, monospace;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Archivo', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont,
+    'Segoe UI', Roboto, sans-serif;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  @apply bg-navy-900 text-slate-300 transition-colors duration-300;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Foco visible consistente y accesible (brass) en todo lo que se pueda tabular. */
+:focus-visible {
+  outline: 2px solid var(--color-orange-500);
+  outline-offset: 2px;
+}
+
+/* Respeto a la preferencia de movimiento reducido del sistema. */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* Tema claro: mismo sistema, remapeado. Neutro frío, no crema. */
+html.light {
+  --color-navy-900: #EDEEEC;
+  --color-navy-800: #FFFFFF;
+  --color-navy-700: #F4F5F3;
+
+  --color-slate-700: #D6D9D4;
+  --color-slate-600: #C2C6C1;
+  --color-slate-500: #8A928D;
+  --color-slate-400: #5B635F;
+  --color-slate-300: #3A403D;
+
+  --color-white: #161B1A; /* titulares: tinta sobre fondo claro */
+  --color-orange-500: #D9A441; /* MISMO amarillo que el tema oscuro (rellenos, anillos, marcas) */
+  --color-orange-600: #C79626; /* hover: amarillo un punto más profundo */
+  --color-gold-ink: #8A5F0F; /* oro profundo: texto de acento legible sobre fondo claro */
+  --color-red-400: #C13A25;
+  --color-red-500: #C13A25;
+  --color-purple-500: #C8D2CE;
+  /* --color-ink-900 se mantiene oscuro: es el texto sobre rellenos de latón. */
+}
