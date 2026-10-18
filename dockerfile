@@ -7,6 +7,10 @@ COPY package.json pnpm-lock.yaml ./
 RUN pnpm install --frozen-lockfile
 
 COPY . .
+
+ARG PUBLIC_WEB3FORMS_KEY
+ENV PUBLIC_WEB3FORMS_KEY=$PUBLIC_WEB3FORMS_KEY
+
 RUN pnpm build
 
 # Etapa 2: servir estáticos
