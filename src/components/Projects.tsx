@@ -14,7 +14,7 @@ export default function Projects() {
           <h2 className="text-3xl md:text-4xl font-extrabold tracking-tight text-white mb-4">
             My projects
           </h2>
-          <p className="text-slate-400">Haz clic en un proyecto para ver el detalle</p>
+          <p className="text-slate-400">Click on a project to see the details</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">

@@ -2,9 +2,9 @@ import { ArrowRight } from "lucide-react";
 
 export default function About() {
   const stats = [
-    { label: "Years of Education", value: "4+" },
-    { label: "Years of Experience", value: "3+" },
-    { label: "Projects Completed", value: "15+" },
+    { label: "Semester, Systems Engineering", value: "9no" },
+    { label: "Years of experience", value: "3+" },
+    { label: "Universidad Tecnológica del Perú", value: "UTP" },
   ];
 
   return (
@@ -29,10 +29,8 @@ export default function About() {
             </h2>
 
             <p className="text-slate-400 mb-8 leading-relaxed">
-              Soy un Ingeniero de Sistemas especializado en desarrollo full-stack con Java, Spring Boot,
-              React y Next.js. Me apasiona construir microservicios escalables, automatizar flujos de
-              trabajo con n8n y crear soluciones eficientes que resuelvan problemas reales.
-            </p>
+           I enjoy owning the whole journey of a product: designing it, coding it, deploying it on my 
+           own Linux servers with Docker, and automating the repetitive parts with n8n. en español </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mb-8">
               {stats.map((stat) => (
@@ -46,10 +44,6 @@ export default function About() {
               ))}
             </div>
 
-            <button className="flex items-center gap-2 rounded-full border-2 border-orange-500 px-6 py-3 text-gold-ink font-semibold hover:bg-orange-500 hover:text-ink-900 hover:-translate-y-1 transition-all duration-300">
-              Learn More
-              <ArrowRight size={20} />
-            </button>
           </div>
         </div>
       </div>

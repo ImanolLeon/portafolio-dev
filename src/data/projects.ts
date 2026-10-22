@@ -13,6 +13,8 @@ export interface Project {
   /** Descripción ampliada para el modal */
   longDescription: string;
   image: string;
+  /** Galería de capturas para el carrusel del modal */
+  gallery?: string[];
   tech: string[];
   /** Competencias y aportes concretos por tecnología */
   competencies: ProjectCompetency[];
@@ -170,12 +172,18 @@ export const projects: Project[] = [
   },
   {
     id: 4,
-    title: "Colita Feliz",
+    title: "Pet'Salud",
     description:
       "Gestión veterinaria: clientes, mascotas con foto, citas por veterinario e historial clínico, con acceso por roles.",
     longDescription:
       "Aplicación web para administrar una clínica veterinaria. Permite registrar a los clientes y sus mascotas (con foto, especie, raza, edad, sexo y peso), agendar citas por veterinario y llevar el historial clínico de cada consulta (diagnóstico, tratamiento y observaciones). Para evitar dobles reservas, cada cita es única por veterinario, fecha y hora. Se construyó como una aplicación MVC con vistas en Thymeleaf y seguridad por roles: el administrador gestiona el panel y los usuarios, el veterinario ve su agenda y la recepción administra las citas. Incluye inicio de sesión con formulario y subida de fotos de mascotas.",
-    image: "/placeholder4.svg",
+    image: "/images/landing-veterinaria.png",
+    gallery: [
+      "/images/landing-veterinaria.png",
+      "/images/colita-feliz-pagina-principal.png",
+      "/images/patita-felizces-login.png",
+      
+    ],
     tech: ["Spring Boot", "Thymeleaf", "Spring Security"],
     competencies: [
       {
@@ -185,6 +193,10 @@ export const projects: Project[] = [
           "Subida de fotos de mascotas con nombre UUID y ruta configurada.",
           "Inicio de sesión con formulario y contraseñas cifradas con BCrypt.",
           "Control de acceso por roles (ADMIN, VETERINARIO y RECEPCION) aplicado a las rutas.",
+          "Modelo del dominio: cliente, mascota, cita, historial clínico y veterinario.",
+          "Relaciones OneToMany y OneToOne con borrado en cascada.",
+          "Restricción única por veterinario, fecha y hora que impide dobles reservas.",
+
         ],
       },
       {
@@ -195,14 +207,7 @@ export const projects: Project[] = [
           "Panel de administración y agenda del veterinario como vistas propias.",
         ],
       },
-      {
-        tech: "Spring Data JPA",
-        details: [
-          "Modelo del dominio: cliente, mascota, cita, historial clínico y veterinario.",
-          "Relaciones OneToMany y OneToOne con borrado en cascada.",
-          "Restricción única por veterinario, fecha y hora que impide dobles reservas.",
-        ],
-      },
+      
     ],
     highlights: [
       "Gestión de clientes, mascotas, citas e historial clínico",
@@ -211,7 +216,7 @@ export const projects: Project[] = [
       "Acceso por roles: administrador, veterinario y recepción",
       "Vistas server-side con Thymeleaf y fragments reutilizables",
     ],
-    github: "",
-    demo: "",
+    github: "https://github.com/ImanolLeon/PetPeru-gestionVeterinaria",
+     demo: "https://petsalud.imanol.uk/",
   },
 ];
