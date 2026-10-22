@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence, MotionConfig } from "framer-motion";
-import { X, ExternalLink, CheckCircle2, ArrowUpRight } from "lucide-react";
+import { X, ExternalLink, CheckCircle2, ArrowUpRight, ChevronLeft, ChevronRight, Images } from "lucide-react";
 import { GithubIcon } from "./icons";
 import type { Project } from "../data/projects";
 
@@ -18,15 +18,27 @@ interface Competency {
 export default function ProjectModal({ project, onClose }: Props) {
   // Competencia seleccionada: abre el sub-modal lateral.
   const [activeComp, setActiveComp] = useState<Competency | null>(null);
+  // Galería/carrusel de capturas.
+  const [showGallery, setShowGallery] = useState(false);
+  const [galleryIndex, setGalleryIndex] = useState(0);
 
-  // Cerrar con Escape (primero el sub-modal, luego el modal) y bloquear el scroll del body.
+  const gallery = project?.gallery && project.gallery.length > 0 ? project.gallery : project ? [project.image] : [];
+
+  // Cerrar con Escape (primero la galería, luego el sub-modal, luego el modal) y bloquear el scroll del body.
   useEffect(() => {
     if (!project) return;
 
     const onKeyDown = (event: KeyboardEvent) => {
       if (event.key !== "Escape") return;
-      if (activeComp) setActiveComp(null);
-      else onClose();
+      if (showGallery) {
+        setShowGallery(false);
+        return;
+      }
+      if (activeComp) {
+        setActiveComp(null);
+        return;
+      }
+      onClose();
     };
 
     document.addEventListener("keydown", onKeyDown);
@@ -37,12 +49,20 @@ export default function ProjectModal({ project, onClose }: Props) {
       document.removeEventListener("keydown", onKeyDown);
       document.body.style.overflow = previousOverflow;
     };
-  }, [project, onClose, activeComp]);
+  }, [project, onClose, activeComp, showGallery]);
 
-  // Si cambia de proyecto, limpia la competencia abierta.
+  // Si cambia de proyecto, limpia la competencia abierta y la galería.
   useEffect(() => {
     setActiveComp(null);
+    setShowGallery(false);
+    setGalleryIndex(0);
   }, [project?.id]);
+
+  useEffect(() => {
+    if (!showGallery || gallery.length === 0) return;
+    if (galleryIndex >= gallery.length) setGalleryIndex(0);
+    if (galleryIndex < 0) setGalleryIndex(gallery.length - 1);
+  }, [showGallery, gallery.length, galleryIndex]);
 
   return (
     <MotionConfig reducedMotion="user">
@@ -89,6 +109,21 @@ export default function ProjectModal({ project, onClose }: Props) {
               >
                 <X size={20} />
               </button>
+
+              {project.gallery && project.gallery.length > 0 && (
+                <button
+                  type="button"
+                  onClick={() => {
+                    setGalleryIndex(0);
+                    setShowGallery(true);
+                  }}
+                  className="absolute left-4 top-4 flex items-center gap-2 rounded-full border border-slate-700/50 bg-navy-900/70 px-4 py-2 text-sm font-medium text-slate-200 backdrop-blur-sm transition-colors hover:border-orange-500/50 hover:text-gold-ink"
+                  aria-label="Ver galería de capturas"
+                >
+                  <Images size={16} />
+                  Ver imágenes
+                </button>
+              )}
 
               <div className="absolute bottom-4 left-6 right-6">
                 <h3
@@ -240,6 +275,85 @@ export default function ProjectModal({ project, onClose }: Props) {
                           </li>
                         ))}
                       </ul>
+                    </div>
+                  </motion.div>
+                </>
+              )}
+            </AnimatePresence>
+
+            {/* Carrusel de capturas */}
+            <AnimatePresence>
+              {showGallery && gallery.length > 0 && (
+                <>
+                  <motion.div
+                    key="gallery-backdrop"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 0.2 }}
+                    onClick={() => setShowGallery(false)}
+                    aria-hidden="true"
+                    className="absolute inset-0 z-30 bg-black/90 backdrop-blur-sm"
+                  />
+
+                  <motion.div
+                    key="gallery-panel"
+                    role="dialog"
+                    aria-modal="true"
+                    aria-label={`Galería de capturas de ${project.title}`}
+                    initial={{ opacity: 0, scale: 0.98 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.98 }}
+                    transition={{ duration: 0.25, ease: "easeOut" }}
+                    className="absolute inset-0 z-40 flex flex-col items-center justify-center p-4 sm:p-6"
+                  >
+                    <button
+                      onClick={() => setShowGallery(false)}
+                      aria-label="Cerrar galería"
+                      className="absolute right-4 top-4 rounded-full border border-slate-700/50 bg-navy-900/70 p-2 text-slate-300 backdrop-blur-sm transition-colors hover:border-orange-500/50 hover:text-gold-ink"
+                    >
+                      <X size={22} />
+                    </button>
+
+                    <div className="relative flex w-full max-w-5xl items-center justify-center">
+                      {gallery.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setGalleryIndex((prev) => (prev - 1 + gallery.length) % gallery.length)
+                          }
+                          aria-label="Imagen anterior"
+                          className="absolute left-0 z-10 rounded-full border border-slate-700/50 bg-navy-900/70 p-2 text-slate-200 backdrop-blur-sm transition-colors hover:border-orange-500/50 hover:text-gold-ink sm:-left-4"
+                        >
+                          <ChevronLeft size={24} />
+                        </button>
+                      )}
+
+                      <figure className="flex max-h-[80vh] w-full flex-col items-center gap-3">
+                        <img
+                          src={gallery[galleryIndex]}
+                          alt={`Captura ${galleryIndex + 1} de ${gallery.length} de ${project.title}`}
+                          className="max-h-[80vh] w-auto max-w-full rounded-xl object-contain shadow-2xl"
+                        />
+                        {gallery.length > 1 && (
+                          <figcaption className="rounded-full border border-slate-700/50 bg-navy-900/70 px-3 py-1 text-xs text-slate-300 backdrop-blur-sm">
+                            {galleryIndex + 1} / {gallery.length}
+                          </figcaption>
+                        )}
+                      </figure>
+
+                      {gallery.length > 1 && (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setGalleryIndex((prev) => (prev + 1) % gallery.length)
+                          }
+                          aria-label="Imagen siguiente"
+                          className="absolute right-0 z-10 rounded-full border border-slate-700/50 bg-navy-900/70 p-2 text-slate-200 backdrop-blur-sm transition-colors hover:border-orange-500/50 hover:text-gold-ink sm:-right-4"
+                        >
+                          <ChevronRight size={24} />
+                        </button>
+                      )}
                     </div>
                   </motion.div>
                 </>
