@@ -42,6 +42,18 @@ export default function Projects() {
                   loading="lazy"
                   className="w-full h-full object-cover"
                 />
+
+                 {project.inProduction && (
+    <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-navy-900/80 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-emerald-40">
+      <span className="relative flex h-2 w-2">
+        <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+      </span>
+      En producción
+    </div>
+  )}
+
+
+
                 {/* Sugerencia de "Ver detalles" al pasar el cursor */}
                 <div className="absolute inset-0 flex items-center justify-center bg-navy-900/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100">
                   <span className="flex items-center gap-2 rounded-full bg-orange-500 px-4 py-2 text-sm font-semibold text-ink-900">

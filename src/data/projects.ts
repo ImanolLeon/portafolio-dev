@@ -1,3 +1,10 @@
+import { boolean } from "astro:schema";
+import { tr } from "zod/locales";
+
+// ==========================================
+// --- TIPOS E INTERFACES ---
+// ==========================================
+
 export interface ProjectCompetency {
   /** Tecnología o competencia aplicada (ej. "Spring Boot") */
   tech: string;
@@ -22,9 +29,18 @@ export interface Project {
   highlights: string[];
   github: string;
   demo: string;
+  inProduction?: boolean; 
 }
 
+// ==========================================
+// --- DATOS DE LOS PROYECTOS ---
+// ==========================================
+
 export const projects: Project[] = [
+  
+  // ------------------------------------------
+  // PROYECTO 1: FootGamers
+  // ------------------------------------------
   {
     id: 1,
     title: "FootGamers",
@@ -74,6 +90,10 @@ export const projects: Project[] = [
     github: "https://github.com/ImanolLeon/foot-gamers-backend",
     demo: "https://github.com/ImanolLeon/foot-gamers-fronted",
   },
+
+  // ------------------------------------------
+  // PROYECTO 2: BellidoMap
+  // ------------------------------------------
   {
     id: 2,
     title: "BellidoMap",
@@ -81,7 +101,11 @@ export const projects: Project[] = [
       "Sistema de gestión escolar full-stack: matrículas, estudiantes, apoderados, grados, secciones y aulas, con autenticación JWT.",
     longDescription:
       "Plataforma completa para administrar la información del Colegio María Parado de Bellido. El personal gestiona grados, secciones, aulas y turnos; registra a los estudiantes junto a sus apoderados y controla el ciclo de matrícula con sus estados (pendiente, realizada, cancelada). Los usuarios ingresan al portal con autenticación por JWT. Desarrollé una arquitectura por capas y una landing del colegio con portal de acceso para estudiantes.",
-    image: "/placeholder2.svg",
+     image: "/images/bellido-principal.png",
+    gallery: [
+      "/images/bellido-principal.png",
+      "/images/bellido-login.png", 
+    ],
     tech: ["Spring Boot", "React", "PostgreSQL"],
     competencies: [
       {
@@ -122,6 +146,10 @@ export const projects: Project[] = [
     github: "https://github.com/ImanolLeon/bellido-backend",
     demo: "https://github.com/ImanolLeon/bellido-fronted",
   },
+
+  // ------------------------------------------
+  // PROYECTO 3: Sistema de Reservas
+  // ------------------------------------------
   {
     id: 3,
     title: "Sistema de Reservas",
@@ -170,33 +198,33 @@ export const projects: Project[] = [
     github: "https://github.com/ImanolLeon/SistemaReservas",
     demo: "",
   },
+
+  // ------------------------------------------
+  // PROYECTO 4: Pet'Salud
+  // ------------------------------------------
   {
     id: 4,
     title: "Pet'Salud",
     description:
-      "Gestión veterinaria: clientes, mascotas con foto, citas por veterinario e historial clínico, con acceso por roles.",
+      "Sistema de gestión veterinaria que integra un panel administrativo para la gestión de citas, clientes e historial clínico, junto con una landing page pública orientada a la captación de clientes.",
     longDescription:
-      "Aplicación web para administrar una clínica veterinaria. Permite registrar a los clientes y sus mascotas (con foto, especie, raza, edad, sexo y peso), agendar citas por veterinario y llevar el historial clínico de cada consulta (diagnóstico, tratamiento y observaciones). Para evitar dobles reservas, cada cita es única por veterinario, fecha y hora. Se construyó como una aplicación MVC con vistas en Thymeleaf y seguridad por roles: el administrador gestiona el panel y los usuarios, el veterinario ve su agenda y la recepción administra las citas. Incluye inicio de sesión con formulario y subida de fotos de mascotas.",
+      "Aplicación web para administrar una clínica veterinaria. Permite registrar a los clientes y sus mascotas (con foto, especie, raza, edad, sexo y peso), agendar citas por veterinario y llevar el historial clínico de cada consulta (diagnóstico, tratamiento y observaciones). Para evitar dobles reservas, cada cita es única por veterinario, fecha y hora. Se construyó como una aplicación MVC con vistas en Thymeleaf y seguridad por roles: el administrador gestiona el panel y los usuarios, el veterinario ve su agenda y la recepción administra las citas. Incluye una lading page para todo el publico interesado y un login que solo personal autorizado puede acceder a el",
     image: "/images/landing-veterinaria.png",
     gallery: [
       "/images/landing-veterinaria.png",
       "/images/colita-feliz-pagina-principal.png",
       "/images/patita-felizces-login.png",
-      
     ],
-    tech: ["Spring Boot", "Thymeleaf", "Spring Security"],
+    tech: ["Spring Boot", "Thymeleaf","mysql"],
     competencies: [
       {
         tech: "Spring Boot",
         details: [
           "Arquitectura MVC con controladores, servicios y repositorios.",
-          "Subida de fotos de mascotas con nombre UUID y ruta configurada.",
           "Inicio de sesión con formulario y contraseñas cifradas con BCrypt.",
-          "Control de acceso por roles (ADMIN, VETERINARIO y RECEPCION) aplicado a las rutas.",
           "Modelo del dominio: cliente, mascota, cita, historial clínico y veterinario.",
           "Relaciones OneToMany y OneToOne con borrado en cascada.",
-          "Restricción única por veterinario, fecha y hora que impide dobles reservas.",
-
+          "Integración de la librería de JavaScript FullCalendar en el panel de administración para la gestión visual de citas."
         ],
       },
       {
@@ -204,10 +232,9 @@ export const projects: Project[] = [
         details: [
           "Vistas server-side con una plantilla base y fragments reutilizables (menú y layout).",
           "Formularios y listados para clientes, mascotas, citas e historial.",
-          "Panel de administración y agenda del veterinario como vistas propias.",
+          "Panel de administración y agenda del veterinario como vistas separadas.",
         ],
       },
-      
     ],
     highlights: [
       "Gestión de clientes, mascotas, citas e historial clínico",
@@ -217,6 +244,7 @@ export const projects: Project[] = [
       "Vistas server-side con Thymeleaf y fragments reutilizables",
     ],
     github: "https://github.com/ImanolLeon/PetPeru-gestionVeterinaria",
-     demo: "https://petsalud.imanol.uk/",
+    demo: "https://petsalud.imanol.uk/",
+    inProduction: true
   },
 ];
