@@ -44,29 +44,30 @@ export default function Projects() {
                 />
 
                  {project.inProduction && (
-<div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-[#0E1314]/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-emerald-400 ring-1 ring-white/10">
-  <span className="relative flex h-2 w-2">
-    <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-  </span>
-  En producción
-</div>
-  )}
+  <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-[#0E1314]/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-emerald-400">
+    <span className="relative flex h-2 w-2">
+      <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+    </span>
+    En producción
+  </div>
+)}
 
 {project.inDesarrollo && (
-  <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-[#0E1314]/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-amber-400 ring-1 ring-white/10">
-  <span className="relative flex h-2 w-2">
-    <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
-  </span>
-  En desarrollo
-</div>
+  <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-[#0E1314]/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-amber-400">
+    <span className="relative flex h-2 w-2">
+      <span className="relative inline-flex rounded-full h-2 w-2 bg-amber-500"></span>
+    </span>
+    En desarrollo
+  </div>
 )}
+
 {project.inCompletado && (
-<div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-[#0E1314]/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-blue-400 ring-1 ring-white/10">
-  <span className="relative flex h-2 w-2">
-    <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-  </span>
-  Completado
-</div>
+  <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 rounded-full bg-[#0E1314]/90 backdrop-blur-sm px-3 py-1.5 text-xs font-semibold text-blue-400">
+    <span className="relative flex h-2 w-2">
+      <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
+    </span>
+    Completado
+  </div>
 )}
 
                 {/* Sugerencia de "Ver detalles" al pasar el cursor */}
