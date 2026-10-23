@@ -114,14 +114,7 @@ export default function Contact() {
               </span>
             </div>
 
-            {/* Indicador de disponibilidad */}
-            <div className="flex items-center gap-2 rounded-full border border-slate-700/50 bg-navy-800/50 px-4 py-2">
-              <span className="relative flex h-2 w-2">
-                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-orange-500 opacity-75" />
-                <span className="relative inline-flex h-2 w-2 rounded-full bg-orange-500" />
-              </span>
-              <span className="font-mono text-sm text-slate-400">Available for full-time roles</span>
-            </div>
+           
           </div>
 
           {/* Columna derecha: formulario */}

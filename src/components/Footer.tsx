@@ -3,10 +3,9 @@ import { GithubIcon, LinkedinIcon, InstagramIcon, YoutubeIcon } from "./icons";
 
 export default function Footer() {
   const socialLinks = [
-    { icon: GithubIcon, href: "https://github.com", label: "GitHub" },
-    { icon: LinkedinIcon, href: "https://linkedin.com", label: "LinkedIn" },
-    { icon: InstagramIcon, href: "https://instagram.com", label: "Instagram" },
-    { icon: YoutubeIcon, href: "https://youtube.com", label: "YouTube" },
+    { icon: GithubIcon, href: "https://github.com/ImanolLeon", label: "GitHub" },
+    { icon: LinkedinIcon, href: "https://www.linkedin.com/in/imanolleoncordova", label: "LinkedIn" },
+    { icon: InstagramIcon, href: "https://www.instagram.com/imanolleonalonso/", label: "Instagram" },
   ];
 
   return (
