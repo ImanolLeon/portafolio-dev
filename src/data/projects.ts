@@ -30,6 +30,8 @@ export interface Project {
   github: string;
   demo: string;
   inProduction?: boolean; 
+  inDesarrollo?:boolean;
+  inCompletado?:boolean;
 }
 
 // ==========================================
@@ -89,6 +91,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/ImanolLeon/foot-gamers-backend",
     demo: "https://github.com/ImanolLeon/foot-gamers-fronted",
+    inDesarrollo:true,
   },
 
   // ------------------------------------------
@@ -101,10 +104,10 @@ export const projects: Project[] = [
       "Sistema de gestión escolar full-stack: matrículas, estudiantes, apoderados, grados, secciones y aulas, con autenticación JWT.",
     longDescription:
       "Plataforma completa para administrar la información del Colegio María Parado de Bellido. El personal gestiona grados, secciones, aulas y turnos; registra a los estudiantes junto a sus apoderados y controla el ciclo de matrícula con sus estados (pendiente, realizada, cancelada). Los usuarios ingresan al portal con autenticación por JWT. Desarrollé una arquitectura por capas y una landing del colegio con portal de acceso para estudiantes.",
-     image: "/images/bellido-principal.png",
+     image: "/images/bellido/principal.png",
     gallery: [
-      "/images/bellido-principal.png",
-      "/images/bellido-login.png", 
+      "/images/bellido/principal.png",
+      "/images/bellido/login.png", 
     ],
     tech: ["Spring Boot", "React", "PostgreSQL"],
     competencies: [
@@ -145,6 +148,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/ImanolLeon/bellido-backend",
     demo: "https://github.com/ImanolLeon/bellido-fronted",
+    inDesarrollo:true,
   },
 
   // ------------------------------------------
@@ -152,13 +156,16 @@ export const projects: Project[] = [
   // ------------------------------------------
   {
     id: 3,
-    title: "Sistema de Reservas",
+    title: "Sistema de Reservas ",
     description:
-      "API REST para reservar campos de fútbol con alquiler de balones y camisetas: horarios, estados de reserva, seguridad por roles y permisos.",
+      "Sistema para reservar campos de fútbol con alquiler de balones y camisetas: horarios, estados de reserva, seguridad por roles y permisos.",
     longDescription:
       "Es un sistema de reservas para canchas de fútbol. El usuario elige un campo, la fecha, el día y la franja horaria, y puede añadir alquiler de balones y camisetas a la misma reserva. Cada campo registra su tamaño, su superficie (natural, sintético o losa) y su condición, y las reservas se gestionan con estados (disponible, pendiente o reservada). Está expuesto como API REST con Spring Boot y persistencia en MySQL. Es un proyecto únicamente de backend, sin frontend.",
-    image: "/placeholder3.svg",
-    tech: ["Spring Boot", "MySQL", "Spring Security"],
+    image: "/images/reserva-cancha/dashboard.png",
+    gallery: [
+      "/images/reserva-cancha/dashboard.png",
+    ],
+    tech: ["Spring Boot","NextJs", "MySQL", "Spring Security"],
     competencies: [
       {
         tech: "Spring Boot",
@@ -197,6 +204,7 @@ export const projects: Project[] = [
     ],
     github: "https://github.com/ImanolLeon/SistemaReservas",
     demo: "",
+  
   },
 
   // ------------------------------------------
@@ -208,14 +216,14 @@ export const projects: Project[] = [
     description:
       "Sistema de gestión veterinaria que integra un panel administrativo para la gestión de citas, clientes e historial clínico, junto con una landing page pública orientada a la captación de clientes.",
     longDescription:
-      "Aplicación web para administrar una clínica veterinaria. Permite registrar a los clientes y sus mascotas (con foto, especie, raza, edad, sexo y peso), agendar citas por veterinario y llevar el historial clínico de cada consulta (diagnóstico, tratamiento y observaciones). Para evitar dobles reservas, cada cita es única por veterinario, fecha y hora. Se construyó como una aplicación MVC con vistas en Thymeleaf y seguridad por roles: el administrador gestiona el panel y los usuarios, el veterinario ve su agenda y la recepción administra las citas. Incluye una lading page para todo el publico interesado y un login que solo personal autorizado puede acceder a el",
-    image: "/images/landing-veterinaria.png",
+      "Aplicación web para administrar una clínica veterinaria. Permite registrar a los clientes y sus mascotas (con foto, especie, raza, edad, sexo y peso), agendar citas por veterinario y llevar el historial clínico de cada consulta (diagnóstico, tratamiento y observaciones). Para evitar dobles reservas, cada cita es única por veterinario, fecha y hora. Se construyó como una aplicación MVC con vistas en Thymeleaf y seguridad por roles: el administrador gestiona el panel y los usuarios, el veterinario ve su agenda y la recepción administra las citas. Incluye una lading page para todo el publico interesado y un login que solo personal autorizado puede acceder a el.",
+    image: "/images/gestion-veterinaria/landing.png",
     gallery: [
-      "/images/landing-veterinaria.png",
-      "/images/colita-feliz-pagina-principal.png",
-      "/images/patita-felizces-login.png",
+      "/images/gestion-veterinaria/landing.png",
+      "/images/gestion-veterinaria/login.png",
+      "/images/gestion-veterinaria/dashboard.png",
     ],
-    tech: ["Spring Boot", "Thymeleaf","mysql"],
+    tech: ["Spring Boot", "Thymeleaf","Mysql","Docker"],
     competencies: [
       {
         tech: "Spring Boot",
