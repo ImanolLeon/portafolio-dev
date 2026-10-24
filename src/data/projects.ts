@@ -40,17 +40,73 @@ export interface Project {
 
 export const projects: Project[] = [
   
+
+   // ------------------------------------------
+  // PROYECTO 4: Pet'Salud
+  // ------------------------------------------
+ 
+   {
+    id: 1,
+    title: "Pet'Salud",
+    description:
+      "Sistema de gestión veterinaria que integra un panel administrativo para la gestión de citas, clientes e historial clínico, junto con una landing page pública orientada a la captación de clientes.",
+    longDescription:
+      "Aplicación web para administrar una clínica veterinaria. Permite registrar a los clientes y sus mascotas (con foto, especie, raza, edad, sexo y peso), agendar citas por veterinario y llevar el historial clínico de cada consulta (diagnóstico, tratamiento y observaciones). Para evitar dobles reservas, cada cita es única por veterinario, fecha y hora. Se construyó como una aplicación MVC con vistas en Thymeleaf y seguridad por roles: el administrador gestiona el panel y los usuarios, el veterinario ve su agenda y la recepción administra las citas. Incluye una lading page para todo el publico interesado y un login que solo personal autorizado puede acceder a el.",
+    image: "/images/gestion-veterinaria/landing.webp",
+    gallery: [
+      "/images/gestion-veterinaria/landing.webp",
+      "/images/gestion-veterinaria/login.webp",
+      "/images/gestion-veterinaria/dashboard.webp",
+    ],
+    tech: ["Spring Boot", "Thymeleaf","Mysql","Docker"],
+    competencies: [
+      {
+        tech: "Spring Boot",
+        details: [
+          "Arquitectura MVC con controladores, servicios y repositorios.",
+          "Inicio de sesión con formulario y contraseñas cifradas con BCrypt.",
+          "Modelo del dominio: cliente, mascota, cita, historial clínico y veterinario.",
+          "Relaciones OneToMany y OneToOne con borrado en cascada.",
+          "Integración de la librería de JavaScript FullCalendar en el panel de administración para la gestión visual de citas."
+        ],
+      },
+      {
+        tech: "Thymeleaf",
+        details: [
+          "Vistas server-side con una plantilla base y fragments reutilizables (menú y layout).",
+          "Formularios y listados para clientes, mascotas, citas e historial.",
+          "Panel de administración y agenda del veterinario como vistas separadas.",
+        ],
+      },
+    ],
+    highlights: [
+      "Gestión de clientes, mascotas, citas e historial clínico",
+      "Subida de fotos de mascotas con nombre UUID",
+      "Citas únicas por veterinario, fecha y hora (sin dobles reservas)",
+      "Acceso por roles: administrador, veterinario y recepción",
+      "Vistas server-side con Thymeleaf y fragments reutilizables",
+    ],
+    github: "https://github.com/ImanolLeon/PetPeru-gestionVeterinaria",
+    demo: "https://petsalud.imanol.uk/",
+    inProduction: true
+  },
+
   // ------------------------------------------
   // PROYECTO 1: FootGamers
   // ------------------------------------------
+
   {
-    id: 1,
+    id: 2,
     title: "FootGamers",
     description:
       "Plataforma full-stack para gestionar torneos de fútbol 1v1: inscripciones, grupos, llaves de eliminación directa y clasificaciones en tiempo real.",
     longDescription:
       "Sistema completo para organizar torneos de fútbol individual. Los administradores crean torneos con cupo y cantidad de grupos, asignan a los participantes y el sistema arma el calendario; los jugadores se inscriben, confirman resultados y siguen su avance. Lo diseñé e implementé de punta a punta: backend en Spring Boot y frontend en React, con autenticación por JWT y login social.",
-    image: "/placeholder1.svg",
+    image: "/images/footgamers/landing.webp",
+    gallery: [
+      "/images/footgamers/landing.webp",
+     
+    ],
     tech: ["Spring Boot", "React", "Docker"],
     competencies: [
       {
@@ -90,7 +146,7 @@ export const projects: Project[] = [
       "Tests unitarios con JUnit para autenticación y el filtro JWT",
     ],
     github: "https://github.com/ImanolLeon/foot-gamers-backend",
-    demo: "https://github.com/ImanolLeon/foot-gamers-fronted",
+    demo: "https://footgamer.imanol.uk/",
     inDesarrollo:true,
   },
 
@@ -98,16 +154,17 @@ export const projects: Project[] = [
   // PROYECTO 2: BellidoMap
   // ------------------------------------------
   {
-    id: 2,
+    id: 3,
     title: "BellidoMap",
     description:
       "Sistema de gestión escolar full-stack: matrículas, estudiantes, apoderados, grados, secciones y aulas, con autenticación JWT.",
     longDescription:
       "Plataforma completa para administrar la información del Colegio María Parado de Bellido. El personal gestiona grados, secciones, aulas y turnos; registra a los estudiantes junto a sus apoderados y controla el ciclo de matrícula con sus estados (pendiente, realizada, cancelada). Los usuarios ingresan al portal con autenticación por JWT. Desarrollé una arquitectura por capas y una landing del colegio con portal de acceso para estudiantes.",
-     image: "/images/bellido/principal.webp",
+    image: "/images/bellido/landing.webp",
     gallery: [
-      "/images/bellido/principal.webp",
-      "/images/bellido/login.webp", 
+      "/images/bellido/landing.webp",
+      "/images/bellido/login.webp",
+      "/images/bellido/dashboard.webp", 
     ],
     tech: ["Spring Boot", "React", "PostgreSQL"],
     competencies: [
@@ -155,7 +212,7 @@ export const projects: Project[] = [
   // PROYECTO 3: Sistema de Reservas
   // ------------------------------------------
   {
-    id: 3,
+    id: 4,
     title: "Sistema de Reservas ",
     description:
       "Sistema para reservar campos de fútbol con alquiler de balones y camisetas: horarios, estados de reserva, seguridad por roles y permisos.",
@@ -207,52 +264,5 @@ export const projects: Project[] = [
   
   },
 
-  // ------------------------------------------
-  // PROYECTO 4: Pet'Salud
-  // ------------------------------------------
-  {
-    id: 4,
-    title: "Pet'Salud",
-    description:
-      "Sistema de gestión veterinaria que integra un panel administrativo para la gestión de citas, clientes e historial clínico, junto con una landing page pública orientada a la captación de clientes.",
-    longDescription:
-      "Aplicación web para administrar una clínica veterinaria. Permite registrar a los clientes y sus mascotas (con foto, especie, raza, edad, sexo y peso), agendar citas por veterinario y llevar el historial clínico de cada consulta (diagnóstico, tratamiento y observaciones). Para evitar dobles reservas, cada cita es única por veterinario, fecha y hora. Se construyó como una aplicación MVC con vistas en Thymeleaf y seguridad por roles: el administrador gestiona el panel y los usuarios, el veterinario ve su agenda y la recepción administra las citas. Incluye una lading page para todo el publico interesado y un login que solo personal autorizado puede acceder a el.",
-    image: "/images/gestion-veterinaria/landing.webp",
-    gallery: [
-      "/images/gestion-veterinaria/landing.webp",
-      "/images/gestion-veterinaria/login.webp",
-      "/images/gestion-veterinaria/dashboard.webp",
-    ],
-    tech: ["Spring Boot", "Thymeleaf","Mysql","Docker"],
-    competencies: [
-      {
-        tech: "Spring Boot",
-        details: [
-          "Arquitectura MVC con controladores, servicios y repositorios.",
-          "Inicio de sesión con formulario y contraseñas cifradas con BCrypt.",
-          "Modelo del dominio: cliente, mascota, cita, historial clínico y veterinario.",
-          "Relaciones OneToMany y OneToOne con borrado en cascada.",
-          "Integración de la librería de JavaScript FullCalendar en el panel de administración para la gestión visual de citas."
-        ],
-      },
-      {
-        tech: "Thymeleaf",
-        details: [
-          "Vistas server-side con una plantilla base y fragments reutilizables (menú y layout).",
-          "Formularios y listados para clientes, mascotas, citas e historial.",
-          "Panel de administración y agenda del veterinario como vistas separadas.",
-        ],
-      },
-    ],
-    highlights: [
-      "Gestión de clientes, mascotas, citas e historial clínico",
-      "Subida de fotos de mascotas con nombre UUID",
-      "Citas únicas por veterinario, fecha y hora (sin dobles reservas)",
-      "Acceso por roles: administrador, veterinario y recepción",
-      "Vistas server-side con Thymeleaf y fragments reutilizables",
-    ],
-    github: "https://github.com/ImanolLeon/PetPeru-gestionVeterinaria",
-    demo: "https://petsalud.imanol.uk/",
-    inProduction: true
-  },
+ 
 ];
