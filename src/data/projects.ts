@@ -204,7 +204,7 @@ export const projects: Project[] = [
       "Landing del colegio con portal de acceso para estudiantes",
     ],
     github: "https://github.com/ImanolLeon/bellido-backend",
-    demo: "https://github.com/ImanolLeon/bellido-fronted",
+    demo: "",
     inDesarrollo:true,
   },
 
