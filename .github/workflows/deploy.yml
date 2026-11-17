@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI
 
 on:
   push:
@@ -24,11 +24,3 @@ jobs:
       - run: pnpm astro check
 
       - run: pnpm build
-
-  deploy:
-    needs: build
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-    runs-on: ubuntu-latest
-    steps:
-      - name: Trigger Dokploy deploy
-        run: curl -X POST "${{ secrets.DOKPLOY_WEBHOOK_URL }}"
